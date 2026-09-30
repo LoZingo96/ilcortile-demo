@@ -10,16 +10,62 @@
     "mappaQuery": "Il Cortile Ristorante Pizzeria, Via Papa Giovanni XXIII 24, Calcio BG",
     "googleVoto": "4,5",
     "googleRecensioni": 297,
-    "badge": ["Pizze anche senza glutine", "Parcheggio gratuito", "Aperti 7 giorni su 7"]
+    "badge": [
+      "Pizze anche senza glutine",
+      "Parcheggio gratuito",
+      "Aperti 7 giorni su 7"
+    ]
   },
   "orari": [
-    { "g": "Lunedì", "turni": ["11:00–14:30", "18:00–22:00"] },
-    { "g": "Martedì", "turni": ["11:00–14:30", "18:00–22:00"] },
-    { "g": "Mercoledì", "turni": ["11:00–14:30", "18:00–22:00"] },
-    { "g": "Giovedì", "turni": ["11:00–14:30", "18:00–22:00"] },
-    { "g": "Venerdì", "turni": ["11:00–14:30", "18:00–22:00"] },
-    { "g": "Sabato", "turni": ["11:00–14:30", "18:00–22:00"] },
-    { "g": "Domenica", "turni": ["11:00–14:30", "18:00–22:00"] }
+    {
+      "g": "Lunedì",
+      "turni": [
+        "11:00–14:30",
+        "18:00–22:00"
+      ]
+    },
+    {
+      "g": "Martedì",
+      "turni": [
+        "11:00–14:30",
+        "18:00–22:00"
+      ]
+    },
+    {
+      "g": "Mercoledì",
+      "turni": [
+        "11:00–14:30",
+        "18:00–22:00"
+      ]
+    },
+    {
+      "g": "Giovedì",
+      "turni": [
+        "11:00–14:30",
+        "18:00–22:00"
+      ]
+    },
+    {
+      "g": "Venerdì",
+      "turni": [
+        "11:00–14:30",
+        "18:00–22:00"
+      ]
+    },
+    {
+      "g": "Sabato",
+      "turni": [
+        "11:00–14:30",
+        "18:00–22:00"
+      ]
+    },
+    {
+      "g": "Domenica",
+      "turni": [
+        "11:00–14:30",
+        "18:00–22:00"
+      ]
+    }
   ],
   "social": {
     "instagram": "https://www.instagram.com/ilcortilecalcio/",
@@ -32,58 +78,167 @@
     "evid": "Potrebbe essere proprio qui.",
     "testo": "Pranzo e cena, tutti i giorni."
   },
-  "marquee": ["Padellino", "Marinara dei signori", "Salmone e lamponi", "Polpo grigliato", "Gamberoni avvolti nel bacon", "Risotto il Cortile", "Tiramisù"],
-  "marquee2": ["Pranzo", "Cena", "Asporto", "Senza glutine"],
+  "marquee": [
+    "Padellino",
+    "Marinara dei signori",
+    "Salmone e lamponi",
+    "Polpo grigliato",
+    "Gamberoni avvolti nel bacon",
+    "Risotto il Cortile",
+    "Tiramisù"
+  ],
+  "marquee2": [
+    "Pranzo",
+    "Cena",
+    "Asporto",
+    "Senza glutine"
+  ],
   "manifesto": "Avevi già deciso cosa mangiare stasera? Perfetto, adesso cambia programma.",
   "novita": {
     "attiva": true,
     "badge": "Novità · fatto in casa",
     "nome": "Padellino",
     "testo": "Croccante fuori, soffice e alveolato dentro, con un impasto idratato al 90% e ingredienti selezionati.",
-    "punti": ["Impasto idratato al 90%", "Super croccante fuori", "Soffice e alveolato dentro", "Leggero e fragrante"],
+    "punti": [
+      "Impasto idratato al 90%",
+      "Super croccante fuori",
+      "Soffice e alveolato dentro",
+      "Leggero e fragrante"
+    ],
     "prezzo": null,
     "img": "assets/pizza-tonda.webp"
   },
   "vetrina": [
-    { "titolo": "È venerdì.", "testo": "Il weekend può iniziare ufficialmente.", "img": "assets/pizza-bianca.jpg", "cat": 0 },
-    { "titolo": "Stasera carne?", "testo": "Hai appena preso la decisione migliore della giornata.", "img": "assets/carne.jpg", "cat": 1 },
-    { "titolo": "Pasta e gamberi", "testo": "Un calice di vino bianco e la cena è servita.", "img": "assets/pasta-gamberi.jpg", "cat": 1 }
+    {
+      "titolo": "È venerdì.",
+      "testo": "Il weekend può iniziare ufficialmente.",
+      "img": "assets/pizza-bianca.jpg",
+      "cat": 0
+    },
+    {
+      "titolo": "Stasera carne?",
+      "testo": "Hai appena preso la decisione migliore della giornata.",
+      "img": "assets/carne.jpg",
+      "cat": 1
+    },
+    {
+      "titolo": "Pasta e gamberi",
+      "testo": "Un calice di vino bianco e la cena è servita.",
+      "img": "assets/pasta-gamberi.jpg",
+      "cat": 1
+    },
+    {
+      "titolo": "",
+      "testo": "",
+      "img": "assets/pizza-mortadella.jpg",
+      "cat": 0
+    },
+    {
+      "titolo": "",
+      "testo": "",
+      "img": "assets/pizza-patatine.jpg",
+      "cat": 0
+    }
   ],
   "menu": [
     {
       "titolo": "Pizze",
       "voci": [
-        { "nome": "Padellino", "descr": "impasto idratato al 90%, croccante fuori e soffice dentro", "prezzo": null },
-        { "nome": "La marinara dei signori", "descr": "", "prezzo": 12 },
-        { "nome": "Diavola", "descr": "", "prezzo": 10.5 },
-        { "nome": "Salmone e lamponi", "descr": "un abbinamento che forse non ti aspettavi", "prezzo": null },
-        { "nome": "La Fior di Zucca", "descr": "", "prezzo": null },
-        { "nome": "Calzone", "descr": "", "prezzo": null }
+        {
+          "nome": "Padellino",
+          "descr": "impasto idratato al 90%, croccante fuori e soffice dentro",
+          "prezzo": null
+        },
+        {
+          "nome": "La marinara dei signori",
+          "descr": "",
+          "prezzo": 12
+        },
+        {
+          "nome": "Diavola",
+          "descr": "",
+          "prezzo": 10.5
+        },
+        {
+          "nome": "Salmone e lamponi",
+          "descr": "un abbinamento che forse non ti aspettavi",
+          "prezzo": null
+        },
+        {
+          "nome": "La Fior di Zucca",
+          "descr": "",
+          "prezzo": null
+        },
+        {
+          "nome": "Calzone",
+          "descr": "",
+          "prezzo": null
+        }
       ]
     },
     {
       "titolo": "Cucina",
       "voci": [
-        { "nome": "Gnocco fritto", "descr": "", "prezzo": null },
-        { "nome": "Filet américain", "descr": "", "prezzo": null },
-        { "nome": "Gamberoni avvolti nel bacon", "descr": "rosolati al punto giusto", "prezzo": null },
-        { "nome": "Polpo grigliato", "descr": "pomodorini del Vesuvio padellati e la sua salsa", "prezzo": null },
-        { "nome": "Pasta e gamberi", "descr": "con quel tocco cremoso che lega tutto", "prezzo": null },
-        { "nome": "Risotto «il Cortile»", "descr": "", "prezzo": null }
+        {
+          "nome": "Gnocco fritto",
+          "descr": "",
+          "prezzo": null
+        },
+        {
+          "nome": "Filet américain",
+          "descr": "",
+          "prezzo": null
+        },
+        {
+          "nome": "Gamberoni avvolti nel bacon",
+          "descr": "rosolati al punto giusto",
+          "prezzo": null
+        },
+        {
+          "nome": "Polpo grigliato",
+          "descr": "pomodorini del Vesuvio padellati e la sua salsa",
+          "prezzo": null
+        },
+        {
+          "nome": "Pasta e gamberi",
+          "descr": "con quel tocco cremoso che lega tutto",
+          "prezzo": null
+        },
+        {
+          "nome": "Risotto «il Cortile»",
+          "descr": "",
+          "prezzo": null
+        }
       ]
     },
     {
       "titolo": "Contorni e bevande",
       "voci": [
-        { "nome": "Porzione di patatine", "descr": "", "prezzo": 5 },
-        { "nome": "Coca-Cola Zero", "descr": "in vetro", "prezzo": 4 },
-        { "nome": "Birra media Villacher", "descr": "0,5 l", "prezzo": 6 }
+        {
+          "nome": "Porzione di patatine",
+          "descr": "",
+          "prezzo": 5
+        },
+        {
+          "nome": "Coca-Cola Zero",
+          "descr": "in vetro",
+          "prezzo": 4
+        },
+        {
+          "nome": "Birra media Villacher",
+          "descr": "0,5 l",
+          "prezzo": 6
+        }
       ]
     },
     {
       "titolo": "Dolci",
       "voci": [
-        { "nome": "Tiramisù", "descr": "", "prezzo": null }
+        {
+          "nome": "Tiramisù",
+          "descr": "",
+          "prezzo": null
+        }
       ]
     }
   ],
@@ -93,7 +248,7 @@
     "img": "assets/vini.jpg"
   },
   "sala": {
-    "img": "assets/sala.jpg"
+    "img": "assets/tavolo-crudo-burrata.jpg"
   },
   "lavoro": "Cerchiamo nuove persone per il servizio serale e nei weekend: cassa e supporto al banco pizza, supporto in cucina."
 }
