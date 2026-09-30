@@ -160,8 +160,17 @@ section.blk{padding:84px 0}
 .f{display:grid;gap:6px}
 .f label{font:600 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
 .f label small{font-weight:400;letter-spacing:0;text-transform:none;color:var(--mute)}
-.f input,.f select,.f textarea{width:100%;border:1px solid rgba(243,236,225,.2);border-radius:12px;padding:12px;background:#0d0c0b;color:var(--ink);font-size:16px;color-scheme:dark}
-.f textarea{min-height:70px;resize:vertical}
+.row2>.f{min-width:0}
+.f input,.f select,.f textarea{-webkit-appearance:none;appearance:none;display:block;width:100%;min-width:0;height:52px;margin:0;border:1px solid rgba(243,236,225,.2);border-radius:12px;padding:0 14px;background:#0d0c0b;color:var(--ink);font-size:16px;line-height:normal;color-scheme:dark}
+.f input:focus,.f select:focus,.f textarea:focus{outline:none;border-color:var(--gold)}
+.f select{padding-right:38px;background:#0d0c0b url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%23d6a24a' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 1.5l5 5 5-5'/%3E%3C/svg%3E") no-repeat right 14px center}
+.f input[type=date]{text-align:left;line-height:50px;padding-top:0;padding-bottom:0}
+.f input[type=date]::-webkit-date-and-time-value{text-align:left}
+.f input[type=date]::-webkit-calendar-picker-indicator{filter:invert(.8)}
+.f input[type=number]::-webkit-inner-spin-button,.f input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+.f input[type=number]{-moz-appearance:textfield}
+.f textarea{height:auto;min-height:84px;padding:13px 14px;resize:vertical}
+.bhint{color:#f0a58a;font-size:13px;text-align:center;margin-top:-4px}
 .form small{color:var(--mute);font-size:12px;text-align:center}
 .gruppi{margin-top:18px;color:var(--mute);font-size:14px;max-width:560px}
 .gruppi a{color:var(--gold);text-decoration:underline}
@@ -311,6 +320,7 @@ footer small{display:block;margin-top:26px;font-size:12px;color:rgba(243,236,225
       </div>
       <div class="f"><label>Note <small>facoltative</small></label><textarea id="bNote" placeholder="Seggiolone, senza glutine, compleanno…"></textarea></div>
       <a class="btn btn-w" id="bSend" target="_blank" rel="noopener">Prenota su WhatsApp</a>
+      <p class="bhint hide" id="bHint" role="alert"></p>
       <small>Preferisci chiamare? <a id="bCall" style="text-decoration:underline"></a></small>
     </div>
     <p class="gruppi" id="gruppi"></p>
@@ -417,6 +427,7 @@ function render(){
 // ================= ANIMAZIONI =================
 function animate(){
   gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.config({ignoreMobileResize:true});
   lenis=new Lenis({lerp:.11});
   lenis.on("scroll",ScrollTrigger.update);
   gsap.ticker.add(t=>lenis.raf(t*1000));gsap.ticker.lagSmoothing(0);
@@ -433,11 +444,13 @@ function animate(){
     .add(()=>$("loader").remove());
 
   // il portone si apre: l'arco diventa tutto schermo, il titolo vola via
-  gsap.timeline({scrollTrigger:{trigger:"#hero",start:"top top",end:"+=130%",pin:true,scrub:1}})
-    .to("#arch",{width:"100vw",height:"100%",borderRadius:0,boxShadow:"0 0 0 0 rgba(0,0,0,0)",ease:"none"},0)
-    .to("#heroImg",{scale:1,ease:"none"},0)
-    .to("#heroTitle .ch",{yPercent:-120,opacity:0,stagger:{each:.02,from:"center"},ease:"power1.in"},0)
-    .to(".hero .eyebrow, #hint",{opacity:0,duration:.2},0)
+  // valori di partenza espliciti: se li leggesse dal DOM li prenderebbe a metà intro (arco alto 0 → hero nero tornando su)
+  const aw=()=>Math.min(innerWidth*.66,460),ah=()=>Math.min(innerHeight*.58,600);
+  gsap.timeline({scrollTrigger:{trigger:"#hero",start:"top top",end:"+=130%",pin:true,scrub:1,invalidateOnRefresh:true}})
+    .fromTo("#arch",{width:aw,height:ah,borderRadius:"999px 999px 0px 0px"},{width:()=>innerWidth,height:()=>innerHeight,borderRadius:"0px 0px 0px 0px",boxShadow:"0 0 0 0 rgba(0,0,0,0)",ease:"none",immediateRender:false},0)
+    .fromTo("#heroImg",{scale:1.35},{scale:1,ease:"none",immediateRender:false},0)
+    .fromTo("#heroTitle .ch",{yPercent:0,opacity:1},{yPercent:-120,opacity:0,stagger:{each:.02,from:"center"},ease:"power1.in",immediateRender:false},0)
+    .fromTo(".hero .eyebrow, #hint",{opacity:1},{opacity:0,duration:.2,immediateRender:false},0)
     .to("#shade",{opacity:1,duration:.5},.35)
     .to("#heroCopy > *",{y:0,opacity:1,stagger:.08,duration:.35},.55);
 
@@ -502,7 +515,10 @@ function initBooking(){
 function bMsg(){const d=new Date($("bDay").value+"T12:00"),nm=$("bNome").value.trim();
   const g=d.toLocaleDateString("it-IT",{weekday:"long",day:"numeric",month:"long"});
   const msg=[`Ciao il Cortile! Vorrei prenotare un tavolo:`,`📅 ${g} alle ${$("bOra").value}`,`👥 ${$("bPers").value||2} persone`,nm?`👤 ${nm}`:null,$("bNote").value.trim()?`📝 ${$("bNote").value.trim()}`:null].filter(x=>x!==null).join("\n");
-  $("bSend").toggleAttribute("disabled",!nm||!$("bOra").value);$("bSend").href=wa(msg)}
+  $("bSend").href=wa(msg);if(nm)$("bHint").classList.add("hide")}
+// il pulsante resta sempre attivo: se manca qualcosa lo dice invece di sembrare rotto
+$("bSend").addEventListener("click",e=>{const miss=!$("bOra").value?"Per oggi non ci sono più orari: scegli un altro giorno.":!$("bNome").value.trim()?"Scrivi il tuo nome e poi premi di nuovo.":"";
+  if(!miss)return;e.preventDefault();$("bHint").textContent=miss;$("bHint").classList.remove("hide");($("bOra").value?$("bNome"):$("bDay")).focus()});
 
 if(!MOTION)addEventListener("scroll",()=>{$("top").classList.toggle("on",scrollY>60);$("bar").classList.toggle("on",scrollY>innerHeight*.7)},{passive:true});
 </script>
