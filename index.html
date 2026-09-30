@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>il Cortile · Ristorante Pizzeria a Calcio (BG)</title>
+<meta name="description" content="il Cortile, ristorante e pizzeria a Calcio (BG): pizze anche senza glutine, carne, pesce e vini. Pranzo e cena tutti i giorni. Prenota su WhatsApp.">
+<meta name="theme-color" content="#121110">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="il Cortile · Ristorante Pizzeria a Calcio">
+<meta property="og:description" content="Pranzo e cena tutti i giorni. Prenota il tuo tavolo su WhatsApp.">
+<meta property="og:image" content="assets/sala.jpg">
+<link rel="icon" href="assets/logo-crema.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#121110;--bg2:#1c1a17;--line:rgba(243,236,225,.12);
+  --ink:#f3ece1;--mute:rgba(243,236,225,.66);--gold:#d6a24a;--terra:#b0441f;--paper:#ebe5da;--wa:#25d366;
+  --serif:'Cormorant Garamond',Georgia,serif;--sans:'Inter',system-ui,-apple-system,sans-serif;
+  --gutter:16px;--r:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.55;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+input,select,textarea{font:inherit}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1;letter-spacing:-.01em}
+em{font-style:italic;font-weight:500}
+.wrap{padding:0 var(--gutter);max-width:1160px;margin:0 auto}
+.eyebrow{font:600 11px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:0 24px;border-radius:999px;font-weight:600;font-size:15px;transition:transform .15s,background .2s;text-align:center}
+.btn:active{transform:scale(.97)}
+.btn-g{background:var(--gold);color:#1a1409}
+.btn-o{border:1.5px solid rgba(243,236,225,.55);color:var(--ink)}
+.btn-w{background:var(--wa);color:#fff}
+.btn[disabled]{opacity:.4;pointer-events:none}
+.hide{display:none!important}
+
+/* loader */
+.loader{position:fixed;inset:0;z-index:100;background:var(--bg);display:grid;place-items:center}
+.loader img{width:120px;opacity:0}
+
+/* header */
+.top{position:fixed;inset:0 0 auto 0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:10px var(--gutter);padding-top:calc(10px + env(safe-area-inset-top));transition:background .3s}
+.top.on{background:rgba(18,17,16,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.top .logo{height:46px;width:auto}
+.top .btn{min-height:40px;padding:0 18px;font-size:14px}
+
+/* HERO: il portone */
+.hero{position:relative;height:100vh;height:100svh;overflow:hidden;background:var(--bg)}
+.hero .eyebrow{position:absolute;top:calc(88px + env(safe-area-inset-top));left:0;right:0;text-align:center;z-index:3}
+.hero h1{position:absolute;left:0;right:0;top:calc(112px + env(safe-area-inset-top));z-index:3;text-align:center;font-size:clamp(76px,23vw,230px);font-weight:500;line-height:.9;pointer-events:none}
+.hero h1 .ch{display:inline-block}
+.hero h1 em{color:var(--gold)}
+.arch{position:absolute;left:50%;bottom:0;width:min(66vw,460px);height:min(58svh,600px);transform:translateX(-50%);border-radius:999px 999px 0 0;overflow:hidden;z-index:2;box-shadow:0 0 0 1px rgba(214,162,74,.35)}
+.arch img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.35)}
+.arch .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,17,16,.55) 0%,rgba(18,17,16,.1) 35%,rgba(18,17,16,.55) 65%,rgba(18,17,16,.95) 100%);opacity:0}
+.hero-copy{position:absolute;left:0;right:0;bottom:0;z-index:4;padding-bottom:calc(30px + env(safe-area-inset-bottom));display:grid;gap:14px}
+.hero-copy h2{font-size:clamp(44px,11vw,96px);font-weight:500}
+.hero-copy h2 em{color:var(--gold)}
+.hero-copy p{max-width:40ch;color:rgba(243,236,225,.9)}
+.cta{display:flex;gap:10px;flex-wrap:wrap}
+.badges{display:flex;gap:8px;flex-wrap:wrap}
+.badge{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:rgba(18,17,16,.45);backdrop-filter:blur(6px);border-radius:999px;padding:7px 12px;font-size:13px}
+.badge b{color:var(--gold)}
+.scrollhint{position:absolute;left:50%;bottom:calc(18px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:3;font:600 10px/1 var(--sans);letter-spacing:.3em;color:var(--ink);opacity:.8;display:flex;flex-direction:column;align-items:center;gap:8px}
+.scrollhint i{width:1px;height:34px;background:linear-gradient(var(--ink),transparent);animation:drip 1.6s infinite}
+@keyframes drip{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* marquee */
+.marq{overflow:hidden;padding:26px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.mq{display:flex;width:max-content;animation:mq 40s linear infinite;will-change:transform}
+.mq.rev{animation-direction:reverse;animation-duration:32s;margin-top:6px}
+.mq span{font-family:var(--serif);font-style:italic;font-size:clamp(40px,9vw,92px);line-height:1.1;padding:0 22px;white-space:nowrap}
+.mq span::after{content:"✦";font-style:normal;font-size:.4em;color:var(--gold);margin-left:44px;vertical-align:middle}
+.mq.rev span{font-style:normal;font-weight:700;color:transparent;-webkit-text-stroke:1px rgba(243,236,225,.5);text-transform:uppercase;font-size:clamp(30px,7vw,70px)}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* manifesto */
+.manif{padding:110px 0}
+.manif p{font-family:var(--serif);font-size:clamp(34px,7.4vw,74px);line-height:1.12;font-weight:500;max-width:18ch}
+.manif .w{opacity:.14}
+.manif .w.hl{font-style:italic;color:var(--gold)}
+
+/* padellino */
+.pad{position:relative;height:100vh;height:100svh;overflow:hidden;background:var(--paper);color:#2a1a12}
+.pad .txt{position:relative;z-index:2;padding-top:calc(90px + env(safe-area-inset-top));display:grid;gap:12px;max-width:520px}
+.pad .eyebrow{color:var(--terra)}
+.pad h2{font-size:clamp(70px,19vw,170px);font-weight:700;color:var(--terra);line-height:.85;letter-spacing:-.02em}
+.pad p{color:#5a4538;max-width:34ch}
+.pad .punti{display:flex;flex-wrap:wrap;gap:6px}
+.pad .punti span{border:1px solid rgba(176,68,31,.4);color:var(--terra);border-radius:999px;padding:6px 12px;font-size:13px;font-weight:600;background:rgba(255,255,255,.4)}
+.pad .row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.pad .price{font-family:var(--serif);font-size:38px;font-weight:700;color:#2a1a12;margin-right:6px}
+.pad .btn-g{background:var(--terra);color:#fff}
+.pad .btn-o{border-color:rgba(42,26,18,.4);color:#2a1a12}
+.pizza{position:absolute;left:50%;bottom:0;width:min(118vw,760px);aspect-ratio:1;margin-left:calc(min(118vw,760px)/-2);z-index:1;filter:drop-shadow(0 30px 50px rgba(60,30,10,.35))}
+.pizza img{width:100%;height:100%}
+@media(min-width:900px){.pad .txt{padding-top:0;position:absolute;top:50%;transform:translateY(-50%);left:max(var(--gutter),calc(50vw - 560px))}.pizza{left:auto;right:-12vw;bottom:auto;top:0;margin:0;width:min(56vw,800px)}}
+
+/* galleria orizzontale */
+.gal{position:relative;height:100vh;height:100svh;overflow:hidden;display:flex;align-items:center}
+.track{display:flex;gap:14px;padding:0 var(--gutter);align-items:center;will-change:transform}
+.gal .intro{flex:0 0 min(78vw,420px);display:grid;gap:14px;padding-right:12px}
+.gal .intro h2{font-size:clamp(46px,12vw,96px)}
+.gal .intro h2 em{color:var(--gold)}
+.gal .intro p{color:var(--mute)}
+.panel{flex:0 0 min(74vw,440px);height:min(68svh,620px);border-radius:22px;overflow:hidden;position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:22px;background:#000;scroll-snap-align:center}
+.panel img{position:absolute;top:0;left:-10%;width:120%;height:100%;object-fit:cover}
+.panel::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(0,0,0,.85))}
+.panel>*:not(img){position:relative;z-index:1}
+.panel .n{font:600 12px/1 var(--sans);letter-spacing:.2em;color:var(--gold)}
+.panel h3{font-size:clamp(38px,9vw,56px);margin-top:6px}
+.panel p{font-size:14px;color:rgba(243,236,225,.85);margin-top:4px}
+
+section.blk{padding:84px 0}
+.sec-h{display:grid;gap:12px;margin-bottom:28px;max-width:680px}
+.sec-h h2{font-size:clamp(44px,11vw,84px)}
+.sec-h h2 em{color:var(--gold)}
+.sec-h p{color:var(--mute)}
+
+/* menu */
+.menu-nav{position:sticky;top:calc(66px + env(safe-area-inset-top));z-index:40;background:var(--bg);display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:10px var(--gutter);margin:0 calc(-1*var(--gutter));border-bottom:1px solid var(--line)}
+.menu-nav::-webkit-scrollbar{display:none}
+.menu-nav a{flex:0 0 auto;border:1px solid rgba(243,236,225,.3);border-radius:999px;padding:8px 15px;font-size:13px;font-weight:600;white-space:nowrap}
+.menu-nav a.on{background:var(--gold);border-color:var(--gold);color:#1a1409}
+.menu-cols{display:grid;gap:0 56px}
+@media(min-width:900px){.menu-cols{grid-template-columns:1fr 1fr}}
+.cat{padding-top:32px;scroll-margin-top:140px}
+.cat h3{font-size:clamp(38px,9vw,52px);font-style:italic;font-weight:500;color:var(--gold)}
+.cat .note{font-size:13px;color:var(--mute);margin-top:2px}
+.item{display:grid;grid-template-columns:1fr auto;gap:2px 14px;align-items:center;padding:15px 0;border-bottom:1px dashed var(--line)}
+.item .nm{font-weight:600;font-size:16px}
+.item .ds{grid-column:1;font-size:14px;color:var(--mute)}
+.item .pr{font-family:var(--serif);font-size:24px;white-space:nowrap;grid-row:span 2}
+.menu-foot{margin-top:26px;font-size:13px;color:var(--mute);border-left:2px solid var(--terra);padding-left:12px}
+
+/* cantina */
+.split{display:grid;gap:26px;align-items:center}
+@media(min-width:800px){.split{grid-template-columns:1fr 1fr;gap:60px}}
+.reveal-img{border-radius:999px 999px 22px 22px;overflow:hidden;aspect-ratio:4/5}
+.reveal-img img{width:100%;height:120%;object-fit:cover}
+.split h2{font-size:clamp(42px,9vw,72px);margin-top:12px}
+.split h2 em{color:var(--gold)}
+.split p{color:var(--mute);margin-top:14px}
+
+/* prenota */
+.book{position:relative;overflow:hidden}
+.book>.bgimg{position:absolute;top:-10%;left:0;width:100%;height:120%;object-fit:cover;opacity:.3}
+.book::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,var(--bg) 0%,rgba(18,17,16,.55) 25%,rgba(18,17,16,.75) 75%,var(--bg) 100%);z-index:1}
+.book .wrap{position:relative;z-index:2}
+.form{background:rgba(28,26,23,.92);border:1px solid var(--line);border-radius:22px;padding:22px;display:grid;gap:14px;max-width:560px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.f{display:grid;gap:6px}
+.f label{font:600 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.f label small{font-weight:400;letter-spacing:0;text-transform:none;color:var(--mute)}
+.f input,.f select,.f textarea{width:100%;border:1px solid rgba(243,236,225,.2);border-radius:12px;padding:12px;background:#0d0c0b;color:var(--ink);font-size:16px;color-scheme:dark}
+.f textarea{min-height:70px;resize:vertical}
+.form small{color:var(--mute);font-size:12px;text-align:center}
+.gruppi{margin-top:18px;color:var(--mute);font-size:14px;max-width:560px}
+.gruppi a{color:var(--gold);text-decoration:underline}
+
+/* info */
+.grid{display:grid;gap:14px}
+@media(min-width:800px){.grid{grid-template-columns:1fr 1fr}}
+.box{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:22px}
+.box h4{font-family:var(--serif);font-size:30px;font-weight:600;margin-bottom:10px}
+.box ul{list-style:none;display:grid;gap:6px}
+.box li{display:flex;justify-content:space-between;gap:10px;font-size:15px}
+.box li b{font-weight:600;text-align:right}
+.box p{color:var(--mute);font-size:15px}
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.acts .btn{min-height:44px;padding:0 18px;font-size:14px}
+.open{margin-top:12px;font-size:14px}
+.map{border-radius:var(--r);overflow:hidden;aspect-ratio:16/10;background:#000;grid-column:1/-1}
+.map iframe{width:100%;height:100%;border:0;filter:grayscale(.3) contrast(1.05)}
+
+/* footer */
+footer{padding:60px 0 calc(100px + env(safe-area-inset-bottom));text-align:center;border-top:1px solid var(--line);overflow:hidden}
+footer .big{font-family:var(--serif);font-size:25vw;line-height:.8;font-weight:500;white-space:nowrap;letter-spacing:-.03em}
+footer .big em{color:var(--gold)}
+footer img{width:90px;margin:0 auto 20px}
+footer small{display:block;margin-top:26px;font-size:12px;color:rgba(243,236,225,.45);padding:0 var(--gutter)}
+
+/* barra in basso */
+.bar{position:fixed;left:var(--gutter);right:var(--gutter);bottom:calc(12px + env(safe-area-inset-bottom));z-index:55;max-width:520px;margin:0 auto;display:flex;gap:8px;transform:translateY(160%);transition:transform .35s}
+.bar.on{transform:none}
+.bar .btn{flex:1;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+
+/* senza animazioni (riduci movimento / librerie non caricate): tutto visibile e statico */
+.static .loader{display:none}
+.static .arch{width:100%;height:100%;border-radius:0}
+.static .arch img{transform:none}
+.static .arch .shade{opacity:1}
+.static .hero h1,.static .hero .eyebrow,.static .scrollhint{display:none}
+.static .manif .w{opacity:1}
+.static .gal{height:auto;padding:60px 0}
+.static .track{overflow-x:auto;scroll-snap-type:x mandatory}
+.static .pad{height:auto;padding-bottom:72vw}
+.static .pizza{transform:translateY(45%)}
+</style>
+</head>
+<body>
+
+<div class="loader" id="loader"><img src="assets/logo-crema.png" alt=""></div>
+
+<header class="top" id="top">
+  <a href="#"><img class="logo" src="assets/logo-crema.png" alt="il Cortile ristorante pizzeria"></a>
+  <a class="btn btn-g" href="#prenota">Prenota</a>
+</header>
+
+<!-- HERO: il portone che si apre sul cortile -->
+<section class="hero" id="hero">
+  <span class="eyebrow">Ristorante · Pizzeria · Calcio</span>
+  <h1 id="heroTitle"><span class="ch">i</span><span class="ch">l</span> <em><span class="ch">C</span><span class="ch">o</span><span class="ch">r</span><span class="ch">t</span><span class="ch">i</span><span class="ch">l</span><span class="ch">e</span></em></h1>
+  <div class="arch" id="arch">
+    <img id="heroImg" alt="La sala de il Cortile">
+    <div class="shade" id="shade"></div>
+  </div>
+  <div class="wrap hero-copy" id="heroCopy">
+    <h2 id="heroH"></h2>
+    <p id="heroP"></p>
+    <div class="cta">
+      <a class="btn btn-g" href="#prenota">Prenota un tavolo</a>
+      <a class="btn btn-o" href="#menu">Il menù</a>
+    </div>
+    <div class="badges" id="badges"></div>
+  </div>
+  <div class="scrollhint" id="hint">SCORRI<i></i></div>
+</section>
+
+<div class="marq">
+  <div class="mq" id="mq1"></div>
+  <div class="mq rev" id="mq2"></div>
+</div>
+
+<section class="manif">
+  <div class="wrap"><p id="manif"></p></div>
+</section>
+
+<!-- PADELLINO: la pizza che sale e gira -->
+<section class="pad" id="novita">
+  <div class="wrap txt" id="padTxt">
+    <span class="eyebrow" id="novBadge"></span>
+    <h2 id="novH"></h2>
+    <p id="novP"></p>
+    <div class="punti" id="punti"></div>
+    <div class="row">
+      <span class="price" id="novPr"></span>
+      <a class="btn btn-g" href="#prenota">Prenota e vieni a provarlo</a>
+    </div>
+  </div>
+  <div class="pizza" id="pizza"><img id="novImg" alt="Il Padellino"></div>
+</section>
+
+<!-- GALLERIA ORIZZONTALE -->
+<section class="gal" id="gal">
+  <div class="track" id="track">
+    <div class="intro">
+      <span class="eyebrow">Da noi</span>
+      <h2>Pizza, carne, <em>pesce.</em></h2>
+    </div>
+  </div>
+</section>
+
+<section class="blk" id="menu">
+  <div class="wrap">
+    <div class="sec-h">
+      <span class="eyebrow">Il menù</span>
+      <h2>Il <em>menù.</em></h2>
+    </div>
+    <nav class="menu-nav" id="menuNav"></nav>
+    <div class="menu-cols" id="menuList"></div>
+    <p class="menu-foot">Pizze anche senza glutine. Per l'asporto chiama il <a id="asportoTel" style="text-decoration:underline"></a>.</p>
+  </div>
+</section>
+
+<section class="blk" id="cantina">
+  <div class="wrap split">
+    <div class="reveal-img" id="canWrap"><img id="canImg" alt="La cantina de il Cortile"></div>
+    <div>
+      <span class="eyebrow">La cantina</span>
+      <h2 id="canH"></h2>
+      <p id="canP"></p>
+    </div>
+  </div>
+</section>
+
+<section class="blk book" id="prenota">
+  <img class="bgimg" id="salaImg" alt="">
+  <div class="wrap">
+    <div class="sec-h">
+      <span class="eyebrow">Prenota</span>
+      <h2>Prenota <em>il tuo tavolo.</em></h2>
+      <p>Scegli giorno, ora e quante persone siete: la richiesta arriva al ristorante su WhatsApp.</p>
+    </div>
+    <div class="form">
+      <div class="row2">
+        <div class="f"><label>Giorno</label><input type="date" id="bDay"></div>
+        <div class="f"><label>Ora</label><select id="bOra"></select></div>
+      </div>
+      <div class="row2">
+        <div class="f"><label>Persone</label><input type="number" id="bPers" min="1" max="60" value="2" inputmode="numeric"></div>
+        <div class="f"><label>Nome</label><input id="bNome" placeholder="Es. Marco" autocomplete="name"></div>
+      </div>
+      <div class="f"><label>Note <small>facoltative</small></label><textarea id="bNote" placeholder="Seggiolone, senza glutine, compleanno…"></textarea></div>
+      <a class="btn btn-w" id="bSend" target="_blank" rel="noopener">Prenota su WhatsApp</a>
+      <small>Preferisci chiamare? <a id="bCall" style="text-decoration:underline"></a></small>
+    </div>
+    <p class="gruppi" id="gruppi"></p>
+  </div>
+</section>
+
+<section class="blk" id="info">
+  <div class="wrap">
+    <div class="sec-h">
+      <span class="eyebrow">Dove siamo</span>
+      <h2 id="infoH"></h2>
+    </div>
+    <div class="grid">
+      <div class="box">
+        <h4>Orari</h4>
+        <ul id="hours"></ul>
+        <p class="open" id="openNow"></p>
+        <div class="acts">
+          <a class="btn btn-g" id="callBtn"></a>
+          <a class="btn btn-w" id="waBtn" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+      <div class="box">
+        <h4>Seguici</h4>
+                <div class="acts" id="socials"></div>
+        <h4 style="margin-top:22px">Lavora con noi</h4>
+        <p id="lavoro"></p>
+        <div class="acts"><a class="btn btn-o" id="lavoroBtn" target="_blank" rel="noopener">Candidati su WhatsApp</a></div>
+      </div>
+      <div class="map"><iframe loading="lazy" title="Mappa" id="mapF"></iframe></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <img src="assets/logo-crema.png" alt="">
+  <div class="big" id="bigName">il <em>Cortile</em></div>
+  <small id="foot"></small>
+  <small style="margin-top:6px">Anteprima dimostrativa del sito</small>
+</footer>
+
+<div class="bar" id="bar">
+  <a class="btn btn-o" id="barCall" style="background:rgba(18,17,16,.92);flex:.6">Chiama</a>
+  <a class="btn btn-g" href="#prenota" id="barBook">Prenota un tavolo</a>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+const eur=v=>(+v).toFixed(2).replace(".",",")+" €";
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const wa=t=>`https://wa.me/${C.info.whatsapp}?text=${encodeURIComponent(t)}`;
+const MOTION=!matchMedia("(prefers-reduced-motion: reduce)").matches&&window.gsap&&window.ScrollTrigger&&window.Lenis;
+if(!MOTION)document.documentElement.classList.add("static");
+let C,lenis;
+
+fetch("content.json",{cache:"no-cache"}).then(r=>r.json()).then(c=>{C=c;render();if(MOTION)animate();else $("loader").remove()});
+
+function render(){
+  const I=C.info;
+  $("heroImg").src=C.hero.img;$("heroH").innerHTML=`${esc(C.hero.titolo)} <em>${esc(C.hero.evid)}</em>`;$("heroP").textContent=C.hero.testo;
+  $("badges").innerHTML=`<a class="badge" href="${esc(C.social.recensioni)}" target="_blank" rel="noopener"><b>★ ${esc(I.googleVoto)}</b> su Google · ${I.googleRecensioni} recensioni</a>`+I.badge.map(b=>`<span class="badge">${esc(b)}</span>`).join("");
+  const mq=a=>{const h=a.map(x=>`<span>${esc(x)}</span>`).join("");return h+h};
+  $("mq1").innerHTML=mq(C.marquee);$("mq2").innerHTML=mq(C.marquee2);
+  // l'ultima frase del manifesto va in oro corsivo
+  const sents=C.manifesto.split(/(?<=[.?!])\s+/),last=sents.length>1?sents.pop():"",head=sents.join(" ").split(" ");
+  $("manif").innerHTML=[...head.map(w=>`<span class="w">${esc(w)}</span>`),...(last?last.split(" ").map(w=>`<span class="w hl">${esc(w)}</span>`):[])].join(" ");
+  // padellino
+  const N=C.novita;$("novita").classList.toggle("hide",!N.attiva);
+  $("novImg").src=N.img;$("novBadge").textContent=N.badge;$("novH").textContent=N.nome;$("novP").textContent=N.testo;$("novPr").textContent=N.prezzo!=null?eur(N.prezzo):"";$("novPr").classList.toggle("hide",N.prezzo==null);
+  $("punti").innerHTML=(N.punti||[]).map(p=>`<span>${esc(p)}</span>`).join("");
+  // galleria
+  $("track").insertAdjacentHTML("beforeend",C.vetrina.map((v,k)=>`<a class="panel" href="${"#c-"+v.cat}"><img src="${esc(v.img)}" alt=""><span class="n">0${k+1}</span><h3>${esc(v.titolo)}</h3><p>${esc(v.testo)}</p></a>`).join(""));
+  // menù
+  $("menuNav").innerHTML=C.menu.map((c,i)=>`<a href="#c-${i}" data-c="c-${i}">${esc(c.titolo)}</a>`).join("");
+  $("menuList").innerHTML=C.menu.map((c,i)=>`<div class="cat" id="c-${i}"><h3>${esc(c.titolo)}</h3>${c.nota?`<p class="note">${esc(c.nota)}</p>`:""}${
+    c.voci.map((v,j)=>`<div class="item"><span class="nm">${esc(v.nome)}</span><span class="pr">${v.prezzo!=null?eur(v.prezzo):""}</span>${v.descr?`<span class="ds">${esc(v.descr)}</span>`:""}</div>`).join("")}</div>`).join("");
+  const links=[...$("menuNav").querySelectorAll("a")];
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;
+    links.forEach(a=>a.classList.toggle("on",a.dataset.c===e.target.id));
+    const on=$("menuNav").querySelector(".on");if(on)$("menuNav").scrollTo({left:on.offsetLeft-16,behavior:"smooth"})}),{rootMargin:"-30% 0px -60% 0px"});
+  document.querySelectorAll(".cat").forEach(c=>io.observe(c));
+  // cantina, sala
+  $("canImg").src=C.cantina.img;
+  const [c1,...c2]=C.cantina.titolo.split(" merita ");$("canH").innerHTML=c2.length?`${esc(c1)} merita <em>${esc(c2.join(" merita "))}</em>`:esc(C.cantina.titolo);
+  $("canP").textContent=C.cantina.testo;$("salaImg").src=C.sala.img;
+  $("gruppi").innerHTML=`Siete in tanti? <a href="${wa("Ciao il Cortile! Vorrei organizzare una cena di gruppo per ___ persone, giorno ___ .")}" target="_blank" rel="noopener">Scrivici per una cena di gruppo</a>`;
+  // info
+  const tel="tel:+39"+I.telefono.replace(/\D/g,"");
+  $("infoH").innerHTML=`${esc(I.indirizzo)}, <em>${esc(I.citta.replace(/\s*\(.*\)/,""))}.</em>`;
+  $("hours").innerHTML=groupHours(C.orari).map(([g,h])=>`<li><span>${g}</span><b>${h}</b></li>`).join("");
+  $("callBtn").href=$("bCall").href=$("barCall").href=$("asportoTel").href=tel;$("asportoTel").textContent=I.telefono;
+  $("callBtn").textContent=$("bCall").textContent="Chiama "+I.telefono;
+  $("waBtn").href=`https://wa.me/${I.whatsapp}`;
+  $("socials").innerHTML=[["Instagram",C.social.instagram],["Facebook",C.social.facebook],["★ Recensioni Google",C.social.recensioni]].filter(x=>x[1]).map(([n,u])=>`<a class="btn btn-o" href="${esc(u)}" target="_blank" rel="noopener">${n}</a>`).join("");
+  $("lavoro").textContent=C.lavoro;$("lavoroBtn").href=wa("Ciao il Cortile! Ho visto che cercate personale, vorrei candidarmi. Mi chiamo ___ .");
+  $("mapF").src=`https://maps.google.com/maps?q=${encodeURIComponent(I.mappaQuery)}&z=16&output=embed`;
+  $("foot").textContent=`${I.nome} · ${I.tagline} · ${I.indirizzo}, ${I.cap} ${I.citta} · Tel. ${I.telefono}`;
+  openNow();initBooking();
+}
+
+// ================= ANIMAZIONI =================
+function animate(){
+  gsap.registerPlugin(ScrollTrigger);
+  lenis=new Lenis({lerp:.11});
+  lenis.on("scroll",ScrollTrigger.update);
+  gsap.ticker.add(t=>lenis.raf(t*1000));gsap.ticker.lagSmoothing(0);
+  document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener("click",e=>{const h=a.getAttribute("href");if(h.length<2)return;e.preventDefault();lenis.scrollTo(h,{offset:-10})}));
+
+  // intro: logo, poi il titolo lettera per lettera, l'arco sale da terra
+  gsap.set("#heroCopy > *",{y:40,opacity:0});
+  gsap.timeline()
+    .to("#loader img",{opacity:1,scale:1.05,duration:.6,ease:"power2.out"})
+    .to("#loader",{yPercent:-100,duration:.8,ease:"power4.inOut"},"+=.15")
+    .from("#heroTitle .ch",{yPercent:110,opacity:0,stagger:.05,duration:.9,ease:"power4.out"},"-=.35")
+    .from("#arch",{height:0,duration:1.1,ease:"power3.out"},"<.1")
+    .from(".hero .eyebrow, #hint",{opacity:0,duration:.6},"<.4")
+    .add(()=>$("loader").remove());
+
+  // il portone si apre: l'arco diventa tutto schermo, il titolo vola via
+  gsap.timeline({scrollTrigger:{trigger:"#hero",start:"top top",end:"+=130%",pin:true,scrub:1}})
+    .to("#arch",{width:"100vw",height:"100%",borderRadius:0,boxShadow:"0 0 0 0 rgba(0,0,0,0)",ease:"none"},0)
+    .to("#heroImg",{scale:1,ease:"none"},0)
+    .to("#heroTitle .ch",{yPercent:-120,opacity:0,stagger:{each:.02,from:"center"},ease:"power1.in"},0)
+    .to(".hero .eyebrow, #hint",{opacity:0,duration:.2},0)
+    .to("#shade",{opacity:1,duration:.5},.35)
+    .to("#heroCopy > *",{y:0,opacity:1,stagger:.08,duration:.35},.55);
+
+  // barre
+  ScrollTrigger.create({start:80,end:"max",onToggle:s=>$("top").classList.toggle("on",s.isActive)});
+  ScrollTrigger.create({trigger:".marq",start:"top bottom",end:"max",onToggle:s=>$("bar").classList.toggle("on",s.isActive)});
+
+  // marquee che si inclina con la velocità dello scroll
+  ScrollTrigger.create({trigger:".marq",start:"top bottom",end:"bottom top",onUpdate:s=>gsap.to(".mq",{skewX:gsap.utils.clamp(-10,10,s.getVelocity()/-250),duration:.3,overwrite:true,onComplete:()=>gsap.to(".mq",{skewX:0,duration:.6})})});
+
+  // manifesto: le parole si accendono mentre scorri
+  gsap.to("#manif .w",{opacity:1,stagger:.1,ease:"none",scrollTrigger:{trigger:".manif",start:"top 70%",end:"bottom 55%",scrub:true}});
+
+  // padellino: la pizza sale e gira, i punti compaiono uno a uno
+  const desk=matchMedia("(min-width:900px)").matches;
+  gsap.timeline({scrollTrigger:{trigger:"#novita",start:"top top",end:"+=120%",pin:true,scrub:1}})
+    .fromTo("#pizza",{yPercent:desk?110:115,rotate:-140},{yPercent:desk?12:46,rotate:50,ease:"power2.out"},0);
+  gsap.timeline({scrollTrigger:{trigger:"#novita",start:"top 65%"}})
+    .from("#novH",{yPercent:60,opacity:0,duration:1,ease:"power4.out"})
+    .from("#novP",{y:20,opacity:0,duration:.7},"-=.6")
+    .from("#punti span",{scale:.6,opacity:0,stagger:.08,duration:.5,ease:"back.out(2)"},"-=.4")
+    .from("#padTxt .row",{y:20,opacity:0,duration:.6},"-=.3");
+
+  // galleria: lo scroll verticale la fa scorrere in orizzontale, parallasse dentro le foto
+  const track=$("track"),dist=()=>track.scrollWidth-innerWidth;
+  const hz=gsap.to(track,{x:()=>-dist(),ease:"none",scrollTrigger:{trigger:"#gal",start:"top top",end:()=>"+="+dist(),pin:true,scrub:1,invalidateOnRefresh:true}});
+  gsap.utils.toArray(".panel img").forEach(img=>gsap.fromTo(img,{xPercent:-6},{xPercent:6,ease:"none",scrollTrigger:{trigger:img.parentNode,containerAnimation:hz,start:"left right",end:"right left",scrub:true}}));
+
+  // titoli di sezione e piatti che salgono
+  gsap.utils.toArray(".sec-h, .split > div:last-child").forEach(el=>gsap.from(el.children,{y:40,opacity:0,stagger:.08,duration:.9,ease:"power3.out",scrollTrigger:{trigger:el,start:"top 82%"}}));
+  ScrollTrigger.batch(".item",{start:"top 92%",once:true,onEnter:b=>gsap.from(b,{y:18,opacity:0,stagger:.05,duration:.6,ease:"power2.out"})});
+
+  // cantina: la foto si apre dal basso ad arco + parallasse; sala dietro il form
+  gsap.from("#canWrap",{clipPath:"inset(100% 0% 0% 0%)",duration:1.3,ease:"power3.inOut",scrollTrigger:{trigger:"#canWrap",start:"top 80%"}});
+  gsap.fromTo("#canImg",{yPercent:-12},{yPercent:0,ease:"none",scrollTrigger:{trigger:"#canWrap",scrub:true}});
+  gsap.fromTo("#salaImg",{yPercent:-8},{yPercent:8,ease:"none",scrollTrigger:{trigger:"#prenota",scrub:true}});
+
+  // nome gigante nel footer
+  gsap.from("#bigName",{xPercent:-12,opacity:.2,ease:"none",scrollTrigger:{trigger:"footer",start:"top bottom",end:"bottom bottom",scrub:true}});
+  addEventListener("load",()=>ScrollTrigger.refresh());
+}
+
+// ================= ORARI / PRENOTAZIONE / ASPORTO =================
+function groupHours(o){const out=[];o.forEach(d=>{const h=d.turni.length?d.turni.join(" · "):"chiuso";const l=out[out.length-1];
+  if(l&&l[1]===h){l[0]=`${l[2]} – ${d.g}`}else out.push([d.g,h,d.g])});
+  if(out.length===1)out[0][0]="Tutti i giorni";return out}
+const mm=t=>+t.slice(0,2)*60+ +t.slice(3,5);
+const hhmm=m=>`${String(m/60|0).padStart(2,"0")}:${String(m%60).padStart(2,"0")}`;
+const turni=d=>C.orari[(d.getDay()+6)%7].turni.map(t=>t.split("–").map(mm));
+function openNow(){const d=new Date(),m=d.getHours()*60+d.getMinutes(),T=turni(d);
+  const cur=T.find(([a,b])=>m>=a&&m<b),next=T.find(([a])=>m<a);
+  $("openNow").textContent=cur?`🟢 Aperti adesso, fino alle ${hhmm(cur[1])}`:next?`🔴 Chiusi adesso, riapriamo alle ${hhmm(next[0])}`:"🔴 Chiusi per oggi, a domani!"}
+// ponytail: slot ogni 30' dentro i turni, l'ultimo 45' prima della chiusura; oggi solo da +30' in poi
+function slots(d){const now=new Date(),today=d.toDateString()===now.toDateString(),cut=now.getHours()*60+now.getMinutes()+30;
+  return turni(d).flatMap(([a,b])=>{const s=[];for(let m=Math.ceil(a/30)*30+30;m<=b-45;m+=30)if(!today||m>=cut)s.push(hhmm(m));return s})}
+function initBooking(){
+  const t=new Date(),iso=d=>new Date(d-d.getTimezoneOffset()*6e4).toISOString().slice(0,10);
+  $("bDay").min=iso(t);$("bDay").value=iso(slots(t).length?t:new Date(+t+864e5));
+  const fill=()=>{const d=new Date($("bDay").value+"T12:00");$("bOra").innerHTML=slots(d).map(s=>`<option${s==="20:00"?" selected":""}>${s}</option>`).join("");bMsg()};
+  $("bDay").onchange=fill;["bOra","bPers","bNome","bNote"].forEach(id=>$(id).oninput=bMsg);fill();
+}
+function bMsg(){const d=new Date($("bDay").value+"T12:00"),nm=$("bNome").value.trim();
+  const g=d.toLocaleDateString("it-IT",{weekday:"long",day:"numeric",month:"long"});
+  const msg=[`Ciao il Cortile! Vorrei prenotare un tavolo:`,`📅 ${g} alle ${$("bOra").value}`,`👥 ${$("bPers").value||2} persone`,nm?`👤 ${nm}`:null,$("bNote").value.trim()?`📝 ${$("bNote").value.trim()}`:null].filter(x=>x!==null).join("\n");
+  $("bSend").toggleAttribute("disabled",!nm||!$("bOra").value);$("bSend").href=wa(msg)}
+
+if(!MOTION)addEventListener("scroll",()=>{$("top").classList.toggle("on",scrollY>60);$("bar").classList.toggle("on",scrollY>innerHeight*.7)},{passive:true});
+</script>
+</body>
+</html>
